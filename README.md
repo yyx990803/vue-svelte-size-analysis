@@ -18,7 +18,7 @@
    - Svelte: `todomvc.svelte.min.js`
 4. Minified files are then compressed w/ gzip and brotli.
    - Vue: `todomvc.vue.min.js.gz`
-   - Svelte: `todomvc.svelte.min.js.gz`'
+   - Svelte: `todomvc.svelte.min.js.gz`
 5. For each framework, a default Vite app using the component is created and the production build is run. The default Vite build splits a vendor chunk (= framework runtime code) and an index chunk (= component code).
 
 ## Results
