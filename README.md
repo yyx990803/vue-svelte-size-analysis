@@ -27,7 +27,7 @@
 | --------------------------------- | ------- | ---------------- |
 | Source                            | 3.93kb  | 3.31kb           |
 | Compiled w/o imports (min)        | 2.73kb  | 5.01kb (183.52%) |
-| Compiled w/o imports (min+gz)     | 1.26kb  | 2.15kb (170.63%) |
+| Compiled w/o imports (min+gz)     | 1.25kb  | 2.13kb (170.40%) |
 | Compiled w/o imports (min+brotli) | 1.10kb  | 1.88kb (170.91%) |
 | Vite index chunk (min+brotli)     | 1.13kb  | 2.41kb (213.27%) |
 | Vite vendor chunk (min+brotli)    | 16.89kb | 2.13kb           |
