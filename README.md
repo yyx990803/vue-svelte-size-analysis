@@ -50,7 +50,7 @@
 
 ## Analysis
 
-The Svelte app imported 2.13kb min+brotli framework code, which is **15.04kb** lighter than Vue. This is the base size difference.
+In client-only mode, the Svelte app imported 1.85kb min+brotli framework code, which is **15.04kb** lighter than Vue. This is the base size difference.
 
 However, for the component code, Svelte's min + compressed output size is **~1.7x** of the Vue equivalent. In this case, a single component results in **0.78kb** of size difference. In SSR scenarios, this ratio goes up further to **~2.1x** where a single component results in a **1.23kb** size difference.
 
