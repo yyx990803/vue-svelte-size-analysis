@@ -8,14 +8,17 @@
 ## Methodology
 
 1. Both frameworks are used to implement a single spec-compliant, functionally-equivalent TodoMVC component.
+
    - Vue: [todomvc.vue](./todomvc.vue) (using `<script setup>` syntax)
    - Svelte: [todomvc.svelte](./todomvc.svelte) (based on [the official implementation](https://github.com/sveltejs/svelte-todomvc/blob/master/src/TodoMVC.svelte), removed the `uuid` function for fairness)
 
 2. Components are compiled in isolation using each framework's online SFC compilers
+
    - Vue: [sfc.vuejs.org](https://sfc.vuejs.org/) @3.1.4 -> `todomvc.vue.js`
    - Svelte: [svelte.dev/repl](https://svelte.dev/repl) @3.38.3 -> `todomvc.svelte.js`
 
 3. Compiled files are minified using [Terser REPL](https://try.terser.org/), and then have the ES imports and exports removed. This is because in a bundled app these imports/exports are either not needed or shared between multiple components.
+
    - Vue: `todomvc.vue.min.js`
    - Svelte: `todomvc.svelte.min.js`
 
@@ -37,8 +40,8 @@
 | Source                            | 3.93kb  | 3.31kb           | -                   |
 | Compiled w/o imports (min)        | 2.73kb  | 5.01kb (183.52%) | 6.59kb (241.39%)    |
 | Compiled w/o imports (min+gz)     | 1.25kb  | 2.13kb (170.40%) | 2.68kb (214.40%)    |
-| Compiled w/o imports (min+brotli) | 1.10kb  | 1.88kb (170.91%) | 2.33 (211.82%)      |
-| Vite index chunk (min+brotli)     | 1.13kb  | 2.41kb (213.27%) |
+| Compiled w/o imports (min+brotli) | 1.10kb  | 1.88kb (170.91%) | 2.33kb (211.82%)    |
+| Vite index chunk (min+brotli)     | 1.13kb  | 2.41kb (213.27%) | -                   |
 | Vite vendor chunk (min+brotli)    | 16.89kb | 2.13kb           | -                   |
 
 <img src="./chart.png" width="600px">
@@ -53,4 +56,4 @@ TodoMVC covers a pretty decent feature range and is generally representative of 
 
 This threshold is even lower in SSR scenarios. In SSR mode, the base difference is **15.87kb** but the compnent count threshold is down to 15.87 / 1.23 ~= **13**!
 
-Obviously in real world apps there are many other factors at play: more features would be imported from the frameworks and 3rd party libraries will be used. The size curve would be affected by the percentage of pure component code in a project. However, it would be safe to assume that the more an app is over the 19-components threshold (which most non-trivial apps would probably cross), the less likely it is for Svelte to have any real size advantage.
+Obviously in real world apps there are many other factors at play: more features would be imported from the frameworks and 3rd party libraries will be used. The size curve would be affected by the percentage of pure component code in a project. However, it would be safe to assume that the more an app is over the 19-components threshold (or 13 in SSR mode, which most non-trivial apps would probably cross), the less likely it is for Svelte to have any real size advantage.
