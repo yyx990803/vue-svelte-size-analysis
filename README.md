@@ -37,14 +37,14 @@
 
 ## Results
 
-|                                   | Vue     | Vue (SSR) | Svelte           | Svelte (SSR) |
-| --------------------------------- | ------- | --------- | ---------------- | ------------------- |
-| Source                            | 3.93kb  | -         | 3.31kb           | -                   |
-| Compiled w/o imports (min)        | 2.73kb  | -         | 5.01kb (183.52%) | 6.59kb (241.39%)    |
-| Compiled w/o imports (min+gz)     | 1.25kb  | -         | 2.13kb (170.40%) | 2.68kb (214.40%)    |
-| Compiled w/o imports (min+brotli) | 1.10kb  | -         | 1.88kb (170.91%) | 2.33kb (211.82%)    |
-| Vite component chunk (min+brotli) | 1.13kb  | -         | 1.95kb (172.26%) | 2.41kb (213.27%)    |
-| Vite vendor chunk (min+brotli)    | 16.89kb | 17.78kb   | 1.85kb           | 2.13kb              |
+|                                   | Vue     | Vue (SSR) | Svelte           | Svelte (SSR)     |
+| --------------------------------- | ------- | --------- | ---------------- | ---------------- |
+| Source                            | 3.93kb  | -         | 3.31kb           | -                |
+| Compiled w/o imports (min)        | 2.73kb  | -         | 5.01kb (183.52%) | 6.59kb (241.39%) |
+| Compiled w/o imports (min+gz)     | 1.25kb  | -         | 2.13kb (170.40%) | 2.68kb (214.40%) |
+| Compiled w/o imports (min+brotli) | 1.10kb  | -         | 1.88kb (170.91%) | 2.33kb (211.82%) |
+| Vite component chunk (min+brotli) | 1.13kb  | -         | 1.95kb (172.26%) | 2.41kb (213.27%) |
+| Vite vendor chunk (min+brotli)    | 16.89kb | 17.78kb   | 1.85kb           | 2.13kb           |
 
 <img src="./chart.png" width="600px">
 
@@ -59,3 +59,11 @@ TodoMVC covers a pretty decent feature range and is generally representative of 
 This threshold is even lower in SSR scenarios. In SSR mode, the base difference is **15.65kb** but the compnent count threshold is down to 15.65 / 1.23 ~= **13**!
 
 Obviously in real world apps there are many other factors at play: more features would be imported from the frameworks and 3rd party libraries will be used. The size curve would be affected by the percentage of pure component code in a project. However, it would be safe to assume that the more an app is over the 19-components threshold (or 13 in SSR mode, which most non-trivial apps would probably cross), the less likely it is for Svelte to have any real size advantage.
+
+## Takeaways
+
+This study isn't meant to show which framework is better - it's strictly focused on analyzing bundle size implications of different framework implementation strategies.
+
+As can be seen from the data, the two frameworks have different sweet spots in terms of bundle size - and it depends a lot on what kind of use case you have. Svelte is still great for one-off components (e.g. wrapped as a custom element), but its size is in fact a disadvantage in medium to large scale applications, especially with SSR.
+
+In a broader sense, this study is meant to showcaes how frameworks are picking different balance points on the compile-time vs. runtime spectrum: Vue performs a decent amount of compile-time optimizations on the source format, but opts for a heavier base runtime in return for smaller generated code. Svelte opts for a minimal runtime but with the cost of heavier generated code. Can Svelte further improve its codegen to reduce code output? Can Vue further improve the tree-shaking to make the baseline smaller? Can another framework find an even better balance point? The answer is probably yes to all of these questions - but as long as we can now acknowledge that "framework size" is a much more nuanced topic than comparing the size of Hello World apps, this study has served its purpose.
