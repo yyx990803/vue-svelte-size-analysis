@@ -56,7 +56,7 @@ However, for the component code, Svelte's min + compressed output size is **~1.7
 
 TodoMVC covers a pretty decent feature range and is generally representative of the components most users build in typical apps. We can reasonably assume that similar size difference would be found in real world scenarios. That is to say, in theory, if an app contains more than 15.04 / 0.78 ~= **19** TodoMVC-sized components, the Svelte app would end up being heavier than the Vue app.
 
-This threshold is even lower in SSR scenarios. In SSR mode, the base difference is **15.65kb** but the compnent count threshold is down to 15.65 / 1.23 ~= **13**!
+This threshold is even lower in SSR scenarios. In SSR mode, the base difference is **15.65kb** but the component count threshold is down to 15.65 / 1.23 ~= **13**!
 
 Obviously in real world apps there are many other factors at play: more features would be imported from the frameworks and 3rd party libraries will be used. The size curve would be affected by the percentage of pure component code in a project. However, it would be safe to assume that the more an app is over the 19-components threshold (or 13 in SSR mode, which most non-trivial apps would probably cross), the less likely it is for Svelte to have any real size advantage.
 
